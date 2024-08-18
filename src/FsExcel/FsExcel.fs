@@ -40,6 +40,8 @@ type HorizontalAlignment =
     | Left
     | Center
     | Right
+    | LeftIndent of int 
+    | RightIndent of int 
 
 type VerticalAlignment =
     | Base
@@ -907,6 +909,12 @@ module Render =
                             cell.Style.Alignment.Horizontal <- XLAlignmentHorizontalValues.Center
                         | Right ->
                             cell.Style.Alignment.Horizontal <- XLAlignmentHorizontalValues.Right
+                        | LeftIndent indent ->
+                            cell.Style.Alignment.Horizontal <- XLAlignmentHorizontalValues.Left
+                            cell.Style.Alignment.Indent <- indent 
+                        | RightIndent indent -> 
+                            cell.Style.Alignment.Horizontal <- XLAlignmentHorizontalValues.Right 
+                            cell.Style.Alignment.Indent <- indent 
                     | VerticalAlignment v ->
                          match v with
                          | Base ->
